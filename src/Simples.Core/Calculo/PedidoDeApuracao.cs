@@ -47,7 +47,8 @@ public sealed record PedidoDeApuracao
 
         if (Limites.PassouDoTeto(Rbt12))
             throw new InvalidOperationException(
-                $"Receita de {Rbt12:N2} passa do teto de {Limites.TetoAnual:N2}: a empresa está fora do Simples.");
+                $"Receita de {Formato.Moeda(Rbt12)} passa do teto de {Formato.Moeda(Limites.TetoAnual)}: " +
+                "a empresa está fora do Simples.");
 
         return this;
     }

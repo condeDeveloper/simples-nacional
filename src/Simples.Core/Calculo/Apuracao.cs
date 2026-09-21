@@ -14,7 +14,8 @@ public sealed record Parcela(Tributo Tributo, decimal Percentual, decimal Valor)
 
     /// <inheritdoc />
     public override string ToString()
-        => $"{Tributos.Tributos.Nome(Tributo)}: {Valor:N2} ({Percentual:0.00}%, {Destino})";
+        => $"{Tributos.Tributos.Nome(Tributo)}: {Formato.Moeda(Valor)} " +
+           $"({Formato.Percentual(Percentual)}, {Destino})";
 }
 
 /// <summary>
@@ -77,10 +78,10 @@ public sealed record Apuracao
         var linhas = new List<string>
         {
             $"Competência {Competencia:MM/yyyy} — Anexo {Anexos.Anexos.Romano(AnexoAplicado)} ({Anexos.Anexos.Descrever(AnexoAplicado)})",
-            $"  RBT12 {Rbt12:N2} — {Faixa}",
-            $"  receita do mês {ReceitaDoMes:N2}",
-            $"  alíquota efetiva {AliquotaEfetivaEmPercentual:0.0000}%",
-            $"  DAS {Das:N2}",
+            $"  RBT12 {Formato.Moeda(Rbt12)} — {Faixa}",
+            $"  receita do mês {Formato.Moeda(ReceitaDoMes)}",
+            $"  alíquota efetiva {Formato.Percentual(AliquotaEfetivaEmPercentual, 4)}",
+            $"  DAS {Formato.Moeda(Das)}",
         };
 
         foreach (var parcela in Parcelas)

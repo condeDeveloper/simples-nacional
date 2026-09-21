@@ -49,5 +49,6 @@ public sealed record Faixa
 
     /// <inheritdoc />
     public override string ToString()
-        => $"faixa {Numero}: até {AteRbt12:N0}, {Aliquota:0.00}% − {ParcelaADeduzir:N2}";
+        => $"faixa {Numero}: até {Formato.Numero(AteRbt12, 0)}, " +
+           $"{Formato.Percentual(Aliquota)} − {Formato.Moeda(ParcelaADeduzir)}";
 }

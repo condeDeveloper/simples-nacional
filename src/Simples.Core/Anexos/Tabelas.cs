@@ -103,7 +103,7 @@ public static class Tabelas
         }
 
         throw new InvalidOperationException(
-            $"Receita de {rbt12:N2} passa do teto do Simples Nacional.");
+            $"Receita de {Formato.Moeda(rbt12)} passa do teto do Simples Nacional.");
     }
 
     private static Faixa Montar(

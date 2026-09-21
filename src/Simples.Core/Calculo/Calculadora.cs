@@ -32,14 +32,15 @@ public sealed class Calculadora
             if (anexo != pedido.Anexo)
             {
                 observacoes.Add(
-                    $"O fator R de {fatorR:P2} {(FatorR.Alcanca(fatorR.Value) ? "alcançou" : "não alcançou")} " +
-                    $"os {FatorR.Limite:P0}: a apuração usa o Anexo {Anexos.Anexos.Romano(anexo)}.");
+                    $"O fator R de {Formato.Razao(fatorR.Value)} " +
+                    $"{(FatorR.Alcanca(fatorR.Value) ? "alcançou" : "não alcançou")} " +
+                    $"os {Formato.Razao(FatorR.Limite, 0)}: a apuração usa o Anexo {Anexos.Anexos.Romano(anexo)}.");
             }
 
             if (!FatorR.Alcanca(fatorR.Value) && pedido.Rbt12 > 0)
             {
                 var falta = FatorR.FolhaQueFalta(pedido.FolhaDe12Meses, pedido.Rbt12);
-                observacoes.Add($"Faltam {falta:N2} de folha em doze meses para cair no Anexo III.");
+                observacoes.Add($"Faltam {Formato.Moeda(falta)} de folha em doze meses para cair no Anexo III.");
             }
         }
 
@@ -60,7 +61,7 @@ public sealed class Calculadora
         if (Limites.PassouDoSublimite(pedido.Rbt12))
         {
             observacoes.Add(
-                $"RBT12 acima do sublimite de {Limites.Sublimite:N2}: ICMS e ISS saem do DAS e são " +
+                $"RBT12 acima do sublimite de {Formato.Moeda(Limites.Sublimite)}: ICMS e ISS saem do DAS e são " +
                 "recolhidos pelo regime normal, no estado e no município.");
         }
 
