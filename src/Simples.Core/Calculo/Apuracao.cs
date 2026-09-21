@@ -77,7 +77,10 @@ public sealed record Apuracao
     {
         var linhas = new List<string>
         {
-            $"Competência {Competencia:MM/yyyy} — Anexo {Anexos.Anexos.Romano(AnexoAplicado)} ({Anexos.Anexos.Descrever(AnexoAplicado)})",
+            // A barra vai entre apóstrofos: sem isso ela é o separador de data
+            // da cultura, e vira ponto ou traço fora do Brasil.
+            $"Competência {Competencia:MM'/'yyyy} — Anexo {Anexos.Anexos.Romano(AnexoAplicado)} " +
+            $"({Anexos.Anexos.Descrever(AnexoAplicado)})",
             $"  RBT12 {Formato.Moeda(Rbt12)} — {Faixa}",
             $"  receita do mês {Formato.Moeda(ReceitaDoMes)}",
             $"  alíquota efetiva {Formato.Percentual(AliquotaEfetivaEmPercentual, 4)}",

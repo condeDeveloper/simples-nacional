@@ -88,6 +88,7 @@ public class FormatoTests : IDisposable
                 Competencia = new DateOnly(2026, 9, 1),
             }).Detalhar();
 
+            detalhe.Should().Contain("Competência 09/2026");
             detalhe.Should().Contain("RBT12 300.000,00");
             detalhe.Should().Contain("alíquota efetiva 8,0800%");
             detalhe.Should().Contain("DAS 2.020,00");
